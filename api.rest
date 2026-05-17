@@ -1,0 +1,123 @@
+###
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "bashairmin",
+  "email": "bashmin@mail.com",
+  "password": "123456"
+}
+
+
+###
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "name": "bashmin",
+  "email": "bashmin@mail.com",
+  "password": "123456"
+}
+
+###
+POST http://localhost:3000/api/campus
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc3OTg4OTQ4LCJleHAiOjE3NzgwNzUzNDh9.vY1Wp5aE4KZOGkE1qM8rsMv6aRqSZ0Cj5njuEIPXA10
+{
+  "name": "Kampus UPN",
+  "latitude": -7.782056065699139,
+  "longitude": 110.41460509247223,
+  "radius": 100
+}
+
+###
+GET http://localhost:3000/api/campus
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc3OTg4OTQ4LCJleHAiOjE3NzgwNzUzNDh9.vY1Wp5aE4KZOGkE1qM8rsMv6aRqSZ0Cj5njuEIPXA10
+
+
+###
+PUT http://localhost:3000/api/campus/1
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc3OTg4OTQ4LCJleHAiOjE3NzgwNzUzNDh9.vY1Wp5aE4KZOGkE1qM8rsMv6aRqSZ0Cj5njuEIPXA10
+
+{
+  "name": "Kampus UPNVYK",
+  "latitude": -7.782255252476333,
+  "longitude": 110.41589605443316,
+  "radius": 50
+   
+}
+
+###
+DELETE http://localhost:3000/api/campus/4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc3NjIzMDUwLCJleHAiOjE3Nzc3MDk0NTB9.0KYWH-XiLnplYiXOTXNo5EnBpA5QPZVhIgcGjJADRn8
+
+
+###
+POST http://localhost:3000/api/attendance/checkin
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc3NjIzMDUwLCJleHAiOjE3Nzc3MDk0NTB9.0KYWH-XiLnplYiXOTXNo5EnBpA5QPZVhIgcGjJADRn8
+
+{
+  "campus_id": 1,
+  "latitude": -7.782056065699139,
+  "longitude": 110.41460509247222
+} 
+
+
+###
+GET http://localhost:3000/api/attendance/me
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc3NjIzMDUwLCJleHAiOjE3Nzc3MDk0NTB9.0KYWH-XiLnplYiXOTXNo5EnBpA5QPZVhIgcGjJADRn8
+
+
+
+###
+GET http://localhost:3000/api/attendance
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc3NjIzMDUwLCJleHAiOjE3Nzc3MDk0NTB9.0KYWH-XiLnplYiXOTXNo5EnBpA5QPZVhIgcGjJADRn8
+
+
+###
+GET http://localhost:3000/api/attendance/today
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc3NjIzMDUwLCJleHAiOjE3Nzc3MDk0NTB9.0KYWH-XiLnplYiXOTXNo5EnBpA5QPZVhIgcGjJADRn8
+
+
+###
+GET http://localhost:3000/api/attendance/filter?start=2026-04-01&end=2026-04-28
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc3NjIzMDUwLCJleHAiOjE3Nzc3MDk0NTB9.0KYWH-XiLnplYiXOTXNo5EnBpA5QPZVhIgcGjJADRn8
+
+
+###
+GET http://localhost:3000/api/auth/me
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc3NjIzMDUwLCJleHAiOjE3Nzc3MDk0NTB9.0KYWH-XiLnplYiXOTXNo5EnBpA5QPZVhIgcGjJADRn8
+
+###
+POST http://localhost:3000/api/courses/seed
+
+
+###
+GET http://localhost:3000/api/courses
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc3NjIzMDUwLCJleHAiOjE3Nzc3MDk0NTB9.0KYWH-XiLnplYiXOTXNo5EnBpA5QPZVhIgcGjJADRn8
+
+
+###
+POST http://localhost:3000/api/meetings/seed
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc3OTY3OTQ3LCJleHAiOjE3NzgwNTQzNDd9.fNPGa8J8Ge2HX3AQI9KT2izm5Zycyo_KdBfAQJbWW8k
+###
+GET http://localhost:3000/api/meetings/course/1
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzc3OTY3OTQ3LCJleHAiOjE3NzgwNTQzNDd9.fNPGa8J8Ge2HX3AQI9KT2izm5Zycyo_KdBfAQJbWW8k
+
+
+###
+POST /meetings
+
+###
+PUT /meetings/:id
+
+###insert admin
+POST http://localhost:3000/api/users/3/assign-role
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzc4OTk4NTc2LCJleHAiOjE3NzkwODQ5NzZ9.sFMn_vuL_8GEAKQ_miNj8I_AY9nrmLOQHZgCOP10dh8
+
+{
+  "role_name": "admin"
+}
