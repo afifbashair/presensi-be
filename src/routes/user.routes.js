@@ -18,6 +18,20 @@ router.get(
   user.getUsers
 );
 
+router.post(
+  "/",
+  auth,
+  role(["admin"]),
+  user.createUser
+);
+
+router.delete(
+  "/:id",
+  auth,
+  role(["admin"]),
+  user.deleteUser
+);
+
 
 
 module.exports = router;

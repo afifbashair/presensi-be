@@ -1,20 +1,91 @@
-const Course = require("../models/presensi/course.model");
+const Course =
+  require("../models/presensi/course.model");
 
-// GET ALL COURSE
-exports.getAll = async (req, res) => {
-  const data = await Course.findAll();
-  res.json(data);
+// GET
+exports.getCourses = async (
+  req,
+  res
+) => {
+  try {
+    const courses =
+      await Course.findAll();
+
+    res.json(courses);
+
+  } catch (err) {
+    res.status(500).json({
+      message: err.message,
+    });
+  }
 };
 
-// SEED DATA COURSE (JALANKAN SEKALI)
-exports.seed = async (req, res) => {
-  const courses = [
-    { name: "Praktikum Teknologi Cloud Computing" },
-    { name: "Praktikum Teknologi dan Pemrograman Mobile" },
-    { name: "Teknologi dan Pemrograman Mobile" },
-  ];
+// CREATE
+exports.createCourse = async (
+  req,
+  res
+) => {
+  try {
+    await Course.create(req.body);
 
-  await Course.bulkCreate(courses);
+    res.json({
+      message:
+        "Course berhasil dibuat",
+    });
 
-  res.json({ message: "Course berhasil ditambahkan" });
+  } catch (err) {
+    res.status(500).json({
+      message: err.message,
+    });
+  }
+};
+
+// UPDATE
+exports.updateCourse = async (
+  req,
+  res
+) => {
+  try {
+    const { id } = req.params;
+
+    await Course.update(
+      req.body,
+      {
+        where: { id },
+      }
+    );
+
+    res.json({
+      message:
+        "Course berhasil diupdate",
+    });
+
+  } catch (err) {
+    res.status(500).json({
+      message: err.message,
+    });
+  }
+};
+
+// DELETE
+exports.deleteCourse = async (
+  req,
+  res
+) => {
+  try {
+    const { id } = req.params;
+
+    await Course.destroy({
+      where: { id },
+    });
+
+    res.json({
+      message:
+        "Course berhasil dihapus",
+    });
+
+  } catch (err) {
+    res.status(500).json({
+      message: err.message,
+    });
+  }
 };

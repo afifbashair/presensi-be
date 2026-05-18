@@ -1,8 +1,26 @@
 const { DataTypes } = require("sequelize");
-const dbPresensi = require("../../config/dbPresensi");
 
-const Course = dbPresensi.define("Course", {
-  name: DataTypes.STRING,
-});
+const sequelize = require("../../config/dbPresensi");
+
+const Course = sequelize.define(
+  "Course",
+  {
+    name: {
+      type: DataTypes.STRING,
+    },
+
+    description: {
+      type: DataTypes.TEXT,
+    },
+
+    thumbnail: {
+      type: DataTypes.TEXT,
+    },
+
+    teacher_name: {
+      type: DataTypes.STRING,
+    },
+  }
+);
 
 module.exports = Course;

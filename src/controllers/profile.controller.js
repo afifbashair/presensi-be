@@ -39,14 +39,37 @@ exports.updateProfile = async (req, res) => {
   try {
     const user_id = req.user.id;
 
-    const profile = await UserProfile.findOne({
-      where: { user_id },
+    let profile =
+      await UserProfile.findOne({
+        where: { user_id },
+      });
+
+    // AUTO CREATE
+    if (!profile) {
+      profile =
+        await UserProfile.create({
+          user_id,
+        });
+    }
+
+    await profile.update({
+      full_name:
+        req.body.full_name,
+
+      phone: req.body.phone,
+
+      address:
+        req.body.address,
+
+      bio: req.body.bio,
+
+      avatar:
+        req.body.avatar,
     });
 
-    await profile.update(req.body);
-
     res.json({
-      message: "Profile berhasil diupdate",
+      message:
+        "Profile berhasil diupdate",
     });
 
   } catch (err) {

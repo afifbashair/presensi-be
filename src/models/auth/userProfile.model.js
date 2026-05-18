@@ -1,11 +1,36 @@
-const { DataTypes } = require("sequelize");
-const dbAuth = require("../../config/dbAuth");
+const { DataTypes } =
+  require("sequelize");
 
-const UserProfile = dbAuth.define("UserProfile", {
-  user_id: DataTypes.INTEGER,
-  fullname: DataTypes.STRING,
-  nim: DataTypes.STRING,
-  prodi: DataTypes.STRING,
-});
+const sequelize = require("../../config/dbAuth");
+
+const UserProfile =
+  sequelize.define(
+    "UserProfile",
+    {
+      user_id: {
+        type: DataTypes.INTEGER,
+      },
+
+      full_name: {
+        type: DataTypes.STRING,
+      },
+
+      phone: {
+        type: DataTypes.STRING,
+      },
+
+      address: {
+        type: DataTypes.TEXT,
+      },
+
+      bio: {
+        type: DataTypes.TEXT,
+      },
+
+      avatar: {
+        type: DataTypes.TEXT,
+      },
+    }
+  );
 
 module.exports = UserProfile;
