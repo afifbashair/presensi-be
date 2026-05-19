@@ -20,6 +20,10 @@ const Course = sequelize.define(
     teacher_name: {
       type: DataTypes.STRING,
     },
+  },
+  {
+    tableName: "courses",
+    freezeTableName: true,
   }
 );
 

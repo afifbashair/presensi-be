@@ -9,6 +9,11 @@ const Meeting = dbPresensi.define("Meeting", {
   content: DataTypes.TEXT,
   start_time: DataTypes.DATE,
   end_time: DataTypes.DATE,
-});
+},
+{
+  tableName: "meetings",
+  freezeTableName: true,
+}
+);
 
 module.exports = Meeting;

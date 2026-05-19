@@ -30,6 +30,10 @@ const UserProfile =
       avatar: {
         type: DataTypes.TEXT,
       },
+    },
+    {
+      tableName: "userprofile",
+      freezeTableName: true,
     }
   );
 

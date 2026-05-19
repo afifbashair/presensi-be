@@ -19,6 +19,11 @@ const Campus = dbPresensi.define("Campus", {
     type: DataTypes.INTEGER, // meter
     allowNull: false,
   },
-});
+},
+{
+  tableName: "campuses",
+  freezeTableName: true,
+}
+);
 
 module.exports = Campus;
