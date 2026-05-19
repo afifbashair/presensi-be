@@ -14,7 +14,11 @@ const Notification =
       is_read: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
-      },
+      }
+    },
+    {
+    tableName: "notifications",
+    freezeTableName: true,
     }
   );
 

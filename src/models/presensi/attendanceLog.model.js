@@ -6,6 +6,11 @@ const AttendanceLog = dbPresensi.define("AttendanceLog", {
   attendance_id: DataTypes.INTEGER,
   status: DataTypes.STRING,
   reason: DataTypes.STRING,
-});
+},
+{
+  tableName: "attendancelogs",
+  freezeTableName: true,
+}
+);
 
 module.exports = AttendanceLog;

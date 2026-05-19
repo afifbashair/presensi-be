@@ -9,6 +9,10 @@ const dbAuth = new Sequelize(
     host: process.env.DB_HOST,
     dialect: "mysql",
     logging: false,
+    define: {
+      freezeTableName: true,
+      timestamps: true,
+    },
   }
 );
 

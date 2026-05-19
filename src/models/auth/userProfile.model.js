@@ -3,8 +3,7 @@ const { DataTypes } =
 
 const sequelize = require("../../config/dbAuth");
 
-const UserProfile =
-  sequelize.define(
+const UserProfile = sequelize.define(
     "UserProfile",
     {
       user_id: {
@@ -32,7 +31,7 @@ const UserProfile =
       },
     },
     {
-      tableName: "userprofile",
+      tableName: "userprofiles",
       freezeTableName: true,
     }
   );

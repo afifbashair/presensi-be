@@ -19,6 +19,11 @@ const Attendance = dbPresensi.define("Attendance", {
   longitude: DataTypes.DOUBLE,
   course_id: DataTypes.INTEGER,
   meeting_id: DataTypes.INTEGER,
-});
+},
+{
+  tableName: "attendances",
+  freezeTableName: true,
+}
+  );
 
 module.exports = Attendance;

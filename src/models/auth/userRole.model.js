@@ -6,7 +6,7 @@ const UserRole = dbAuth.define("UserRole", {
   role_id: DataTypes.INTEGER,
 },
 {
-  tableName: "userrole",
+  tableName: "userroles",
   freezeTableName: true,
 });
 

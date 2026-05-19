@@ -10,6 +10,10 @@ const dbPresensi = new Sequelize(
     dialect: "mysql",
     logging: false,
     timezone: "+07:00",
+    define: {
+      freezeTableName: true,
+      timestamps: true,
+    },
   }
 );
 
