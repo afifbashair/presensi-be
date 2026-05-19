@@ -17,12 +17,18 @@ app.use("/api/attendance", require("./src/routes/attendance.routes"));
 app.use("/api/courses", require("./src/routes/course.routes"));
 require("./src/relations/auth.relations");
 require("./src/relations/presensi.relations");
-app.use("/api/meetings", require("./src/routes/meeting.routes"));
+
 app.use("/api/meetings", meetingRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/notifications", notificationRoutes);
 
+
+app.get("/", (req, res) => {
+  res.status(200).json({
+    message: "Backend Presensi API Running",
+  });
+});
 
 
 module.exports = app;
