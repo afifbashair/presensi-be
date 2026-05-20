@@ -14,6 +14,9 @@ const dbPresensi = new Sequelize(
       freezeTableName: true,
       timestamps: true,
     },
+    dialectOptions: {
+      useUTC: false,
+    },
   }
 );
 
