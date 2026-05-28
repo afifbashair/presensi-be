@@ -11,4 +11,4 @@ router.get("/me", auth, attendance.getMyAttendance);
 router.get("/today", auth, attendance.getTodayAttendance);
 router.get("/filter", auth, attendance.getAttendanceByDate);
 
-module.exports = router;
+module.exports = router; 
