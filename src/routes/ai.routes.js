@@ -7,6 +7,8 @@ const {
   "../controllers/ai.controller"
 );
 
+
+
 router.post(
   "/chat",
   chatAI
