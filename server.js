@@ -7,11 +7,15 @@ const PORT = process.env.PORT || 3000;
 Promise.all([
   dbAuth.sync(),
   dbPresensi.sync()
-]).then(() => {
+])
+.then(() => {
   console.log("DB Ready");
 
-  app.listen(PORT, '0.0.0.0', () => {
+  app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server running on ${PORT}`);
-    console.log(process.env.GROQ_API_KEY);
   });
+})
+.catch((err) => {
+  console.error("DB ERROR:", err);
+  process.exit(1);
 });
