@@ -134,7 +134,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxN
 }
 
 ###
-POST https://presensi-be-276882742884.us-central1.run.app//ai/chat
+POST https://presensi-be-276882742884.us-central1.run.app/ai/chat
 Content-Type: application/json
 
 {
