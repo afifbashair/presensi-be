@@ -1,42 +1,73 @@
-const axios = require("axios")
+const Groq =
+  require("groq-sdk");
 
-exports.chatAI = async (req, res) => {
-  try {
-    const { prompt } = req.body
+console.log(
+  process.env.GROQ_API_KEY
+);
 
-    const response = await axios.post(
-      "https://api.groq.com/openai/v1/chat/completions",
-      {
-        model: "llama-3.3-70b-versatile",
+const groq =
+  new Groq({
+
+    apiKey:
+      process.env
+        .GROQ_API_KEY,
+  });
+
+exports.chatAI =
+  async (req, res) => {
+
+    try {
+
+      const { message } =
+        req.body;
+
+      const completion =
+        await groq.chat
+          .completions.create({
+
         messages: [
+
           {
             role: "system",
+
             content:
-              "Kamu adalah asisten akademik kampus. Jawab singkat dan jelas."
+              "Kamu adalah asisten akademik kampus. Jawab singkat, jelas, dan membantu mahasiswa.",
           },
+
           {
             role: "user",
-            content: prompt
-          }
-        ]
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
-          "Content-Type": "application/json"
-        }
-      }
-    )
 
-    res.json({
-      result: response.data.choices[0].message.content
-    })
-  } catch (error) {
-    console.log(error.response?.data || error)
+            content:
+              message,
+          },
+        ],
 
-    res.status(500).json({
-      message:
-        error.response?.data?.error?.message || "AI gagal"
-    })
-  }
-}
+        model:
+          "llama-3.1-8b-instant",
+      });
+
+      const reply =
+        completion
+          .choices[0]
+          .message.content;
+
+      res.json({
+
+        success: true,
+
+        reply,
+      });
+
+    } catch (err) {
+
+      console.log(err);
+
+      res.status(500).json({
+
+        success: false,
+
+        message:
+          "AI gagal",
+      });
+    }
+  };
