@@ -13,12 +13,10 @@ Promise.all([
   console.log("DB Ready");
 
   app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on ${PORT}`);
+    console.log("Server running on", PORT);
   });
 })
 .catch((err) => {
-  console.error("❌ DB SYNC ERROR:", err);
-
-  // penting: biar Cloud Run langsung lihat error
+  console.error("DB ERROR:", err);
   process.exit(1);
 });
