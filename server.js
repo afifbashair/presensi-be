@@ -16,6 +16,8 @@ Promise.all([
   });
 })
 .catch((err) => {
-  console.error("DB ERROR:", err);
+  console.error("❌ DB SYNC ERROR:", err);
+
+  // penting: biar Cloud Run langsung lihat error
   process.exit(1);
 });
