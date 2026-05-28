@@ -1,3 +1,4 @@
+require("dotenv").config();
 const app = require("./app");
 const dbAuth = require("./src/config/dbAuth");
 const dbPresensi = require("./src/config/dbPresensi");

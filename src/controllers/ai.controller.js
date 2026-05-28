@@ -1,17 +1,15 @@
-const Groq =
-  require("groq-sdk");
+const Groq = require("groq-sdk");
 
-console.log(
-  process.env.GROQ_API_KEY
-);
+function getGroq() {
+  if (!process.env.GROQ_API_KEY) {
+    throw new Error("GROQ_API_KEY is missing");
+  }
 
-const groq =
-  new Groq({
-
-    apiKey:
-      process.env
-        .GROQ_API_KEY,
+  return new Groq({
+    apiKey: process.env.GROQ_API_KEY
   });
+}
+
 
 exports.chatAI =
   async (req, res) => {
