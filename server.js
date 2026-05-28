@@ -12,5 +12,6 @@ Promise.all([
 
   app.listen(PORT, () => {
     console.log(`Server running on ${PORT}`);
+    console.log(process.env.GROQ_API_KEY);
   });
 });

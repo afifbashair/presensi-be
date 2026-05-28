@@ -138,5 +138,5 @@ POST http://localhost:3000/ai/chat
 Content-Type: application/json
 
 {
-  "message": "Apa fungsi JWT?"
+  "prompt": "Apa fungsi JWT?"
 }

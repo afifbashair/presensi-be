@@ -4,7 +4,7 @@ const UserProfile = require("../models/auth/userProfile.model");
 exports.getMyProfile = async (req, res) => {
   try {
     const user_id = req.user.id;
-
+ 
     let profile = await UserProfile.findOne({
       where: { user_id },
     });
