@@ -10,7 +10,7 @@ Promise.all([
 ]).then(() => {
   console.log("DB Ready");
 
-  app.listen(PORT, () => {
+  app.listen(PORT, '0.0.0.0', () => {
     console.log(`Server running on ${PORT}`);
     console.log(process.env.GROQ_API_KEY);
   });
