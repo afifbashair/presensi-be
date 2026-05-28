@@ -4,7 +4,7 @@ const userRoutes = require("./src/routes/user.routes");
 const meetingRoutes = require("./src/routes/meeting.routes");
 const profileRoutes = require("./src/routes/profile.routes");
 const notificationRoutes = require("./src/routes/notification.routes");
-
+const aiRoutes = require("./src/routes/ai.routes");
 
 const app = express();
 
@@ -22,7 +22,7 @@ app.use("/api/meetings", meetingRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/notifications", notificationRoutes);
-
+app.use("/ai", aiRoutes);
 
 app.get("/", (req, res) => {
   res.status(200).json({
