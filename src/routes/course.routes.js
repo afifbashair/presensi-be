@@ -32,4 +32,22 @@ router.delete(
   course.deleteCourse
 );
 
+router.post(
+  "/enroll",
+  auth,
+  course.enrollUser
+);
+
+router.get(
+  "/:course_id/participants",
+  auth,
+  course.getParticipants
+);
+
+router.delete(
+  "/:course_id/participant/:user_id",
+  auth,
+  course.removeParticipant
+);
+
 module.exports = router;

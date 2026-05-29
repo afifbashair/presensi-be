@@ -140,3 +140,30 @@ Content-Type: application/json
 {
   "message": "Apa itu presensi?"
 }
+
+###
+POST http://localhost:3000/api/courses/enroll
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzgwMDkzOTgwLCJleHAiOjE3ODAxODAzODB9.h10nrYBsMHrXVriyYG0qQN6fzBkXYmCjYesNGTTrx3w
+
+{
+  "course_id": 1,
+  "user_id": 1
+}
+
+###
+GET http://localhost:3000/api/courses/1/participants
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzgwMDkzOTgwLCJleHAiOjE3ODAxODAzODB9.h10nrYBsMHrXVriyYG0qQN6fzBkXYmCjYesNGTTrx3w
+
+###
+GET http://localhost:3000/api/attendance/meeting/1/present
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzgwMDkzOTgwLCJleHAiOjE3ODAxODAzODB9.h10nrYBsMHrXVriyYG0qQN6fzBkXYmCjYesNGTTrx3w
+
+
+###
+GET http://localhost:3000/api/attendance/meeting/1/absent
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzgwMDkzOTgwLCJleHAiOjE3ODAxODAzODB9.h10nrYBsMHrXVriyYG0qQN6fzBkXYmCjYesNGTTrx3w
+
+###
+GET http://localhost:3000/api/attendance/meeting/5/export
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzgwMDkzOTgwLCJleHAiOjE3ODAxODAzODB9.h10nrYBsMHrXVriyYG0qQN6fzBkXYmCjYesNGTTrx3w
