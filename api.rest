@@ -167,3 +167,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxN
 ###
 GET http://localhost:3000/api/attendance/meeting/5/export
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzgwMDkzOTgwLCJleHAiOjE3ODAxODAzODB9.h10nrYBsMHrXVriyYG0qQN6fzBkXYmCjYesNGTTrx3w
+
+###
+GET http://localhost:3000/api/attendance/meeting/1/summary
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNzgwMDkzOTgwLCJleHAiOjE3ODAxODAzODB9.h10nrYBsMHrXVriyYG0qQN6fzBkXYmCjYesNGTTrx3w

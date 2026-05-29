@@ -15,4 +15,6 @@ router.get("/course/:course_id", auth, attendance.getAttendanceSummaryByCourse);
 router.get("/meeting/:meeting_id/present", auth, attendance.getPresentStudents);
 router.get("/meeting/:meeting_id/absent", auth, attendance.getAbsentStudents);
 router.get("/meeting/:meeting_id/export", auth, attendance.exportAttendance);
+router.get("/meeting/:meeting_id/summary", auth, attendance.getMeetingSummary);
+
 module.exports = router; 
