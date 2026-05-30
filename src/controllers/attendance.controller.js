@@ -13,90 +13,163 @@ const ExcelJS = require("exceljs");
 exports.checkIn = async (req, res) => {
   try {
     const user_id = req.user.id;
-    const { campus_id, course_id, meeting_id, latitude, longitude } = req.body;
 
-    // VALIDASI
-    if (!meeting_id) {
-      return res.status(400).json({ message: "Meeting wajib dipilih" });
-    }
-
-    // CEK SUDAH ABSEN
-    const existing = await Attendance.findOne({
-      where: { user_id, meeting_id },
-    });
-
-    if (existing) {
-      return res.status(400).json({
-        message: "Sudah absen di pertemuan ini",
-      });
-    }
-
-    // AMBIL DATA KAMPUS
-    const campus = await Campus.findByPk(campus_id);
-
-    if (!campus) {
-      return res.status(404).json({ message: "Kampus tidak ditemukan" });
-    }
-
-    // HITUNG JARAK
-    const distance = getDistance(
-      latitude,
-      longitude,
-      campus.latitude,
-      campus.longitude
-    );
-
-    // // VALIDASI RADIUS
-    if (distance > campus.radius) {
-      return res.status(400).json({
-        message: `Diluar jangkauan (${Math.round(distance)} meter)`,
-      });
-    }
-
-    if (!meeting) {
-      return res.status(404).json({ message: "Meeting tidak ditemukan" });
-    }
-
-    const meeting = await Meeting.findByPk(meeting_id);
-
-    if (!meeting) {
-      return res.status(404).json({ message: "Meeting tidak ditemukan" });
-    }
-
-    const now = new Date();
-
-    if (now < meeting.start_time) {
-      return res.status(400).json({
-        message: "Presensi belum dibuka",
-      });
-    }
-
-    if (now > meeting.end_time) {
-      return res.status(400).json({
-        message: "Presensi sudah ditutup",
-      });
-    }
-
-    // SIMPAN
-    await Attendance.create({
-      user_id,
+    const {
       campus_id,
       course_id,
       meeting_id,
-      check_in_time: new Date(),
       latitude,
       longitude,
-    });
+    } = req.body;
+
+    // VALIDASI
+    if (!meeting_id) {
+      return res.status(400).json({
+        message: "Meeting wajib dipilih",
+      });
+    }
+
+    // CEK SUDAH ABSEN
+    const existing =
+      await Attendance.findOne({
+        where: {
+          user_id,
+          meeting_id,
+        },
+      });
+
+    if (existing) {
+      return res.status(400).json({
+        message:
+          "Sudah absen di pertemuan ini",
+      });
+    }
+
+    // CEK KAMPUS
+    const campus =
+      await Campus.findByPk(
+        campus_id
+      );
+
+    if (!campus) {
+      return res.status(404).json({
+        message:
+          "Kampus tidak ditemukan",
+      });
+    }
+
+    // HITUNG JARAK
+    const distance =
+      getDistance(
+        latitude,
+        longitude,
+        campus.latitude,
+        campus.longitude
+      );
+
+    // CEK RADIUS
+    if (
+      distance >
+      campus.radius
+    ) {
+      return res.status(400).json({
+        message:
+          `Diluar jangkauan (${Math.round(
+            distance
+          )} meter)`,
+      });
+    }
+
+    // CEK MEETING
+    const meeting =
+      await Meeting.findByPk(
+        meeting_id
+      );
+
+    if (!meeting) {
+      return res.status(404).json({
+        message:
+          "Meeting tidak ditemukan",
+      });
+    }
+
+    // CEK JADWAL
+    const now =
+      new Date();
+
+    if (
+      meeting.start_time &&
+      now <
+        new Date(
+          meeting.start_time
+        )
+    ) {
+      return res.status(400).json({
+        message:
+          "Presensi belum dibuka",
+      });
+    }
+
+    if (
+      meeting.end_time &&
+      now >
+        new Date(
+          meeting.end_time
+        )
+    ) {
+      return res.status(400).json({
+        message:
+          "Presensi sudah ditutup",
+      });
+    }
+
+    // SIMPAN PRESENSI
+    const attendance =
+      await Attendance.create({
+        user_id,
+        campus_id,
+        course_id,
+        meeting_id,
+        check_in_time:
+          new Date(),
+        latitude,
+        longitude,
+      });
+
+    // OPTIONAL LOG
+    await AttendanceLog.create({
+      attendance_id:
+        attendance.id,
+      activity:
+        "CHECK_IN",
+      description:
+        `Presensi pada meeting ${meeting.title}`,
+    }).catch(() => {});
 
     // RESPONSE
     return res.json({
-      message: "Presensi berhasil",
-      distance: Math.round(distance),
+      success: true,
+      message:
+        "Presensi berhasil",
+      distance:
+        Math.round(
+          distance
+        ),
+      meeting:
+        meeting.title,
     });
 
   } catch (err) {
+
+    console.error(
+      "CHECKIN ERROR:",
+      err
+    );
+
     return res.status(500).json({
-      message: err.message,
+      success: false,
+      message:
+        err.message,
     });
   }
 };
