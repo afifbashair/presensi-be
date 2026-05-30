@@ -206,3 +206,39 @@ async (req, res) => {
 
   }
 };
+
+exports.getCourseStudents = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const courseUsers =
+      await CourseUser.findAll({
+        where: {
+          course_id: id,
+        },
+      });
+
+    const students =
+      await Promise.all(
+        courseUsers.map(async (cu) => {
+          const user =
+            await User.findByPk(
+              cu.user_id
+            );
+
+          return {
+            course_user_id: cu.id,
+            id: user.id,
+            email: user.email,
+          };
+        })
+      );
+
+    res.json(students);
+
+  } catch (err) {
+    res.status(500).json({
+      message: err.message,
+    });
+  }
+};

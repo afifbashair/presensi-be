@@ -50,4 +50,9 @@ router.delete(
   course.removeParticipant
 );
 
+router.get(
+  "/:id/students",
+  course.getCourseStudents
+);
+
 module.exports = router;
